@@ -88,8 +88,8 @@ function getSumBetweenNumbers(n1, n2) {
  *   10,1,1   =>  false
  *   10,10,10 =>  true
  */
-function isTriangle(/* a, b, c */) {
-  throw new Error('Not implemented');
+function isTriangle(a, b, c) {
+  return (a + b > c) && (a + c > b) && (c + b > a);
 }
 
 
@@ -308,8 +308,21 @@ function getDigitalRoot(num) {
  *   '{)' = false
  *   '{[(<{[]}>)]}' = true
  */
-function isBracketsBalanced(/* str */) {
-  throw new Error('Not implemented');
+function isBracketsBalanced(str) {
+  const stack = [];
+  const close = ')>}]';
+  const open = '(<{[';
+  const res = str.split('').find((it) => {
+    if (close.indexOf(it) === -1) {
+      stack.push(it);
+    } else if (close[open.indexOf(stack[stack.length - 1])] === it) {
+      stack.pop();
+    } else {
+      return true;
+    }
+    return false;
+  });
+  return stack.length === 0 && res === undefined;
 }
 
 
